@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model RevenueCategory {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  parentCategory RevenueCategory? @relation("revenue_category_chain", fields: [parentCategoryId], references: [id])
+  parentCategoryId String? @map("parent_category_id")
+
+  // Some of the SDGs. Some are omitted for simplicity sake.
+
+  // 0 being "strongly misaligned", 4 being "strongly aligned"
+  // ORM does not support range constraints, so we'll have to check in code.
+  climateImpactIndex Float? @map("climate_impact_index")
+  marineLifeImpactIndex Float? @map("marine_life_impact_index")
+  economicGrowthIndex Float? @map("economic_growth_index")
+  infrastructureImpactIndex Float? @map("infrastructure_impact_index")
+
+
+  children RevenueCategory[] @relation("revenue_category_chain")
+}
+
+model Company {
+  id String @id @default(uuid())
+  name String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  climateImpactIndex Float? @map("climate_impact_index")
+  marineLifeImpactIndex Float? @map("marine_life_impact_index")
+  economicGrowthIndex Float? @map("economic_growth_index")
+  infrastructureImpactIndex Float? @map("infrastructure_impact_index")
+}
