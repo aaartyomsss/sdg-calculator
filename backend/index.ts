@@ -3,8 +3,7 @@ import bodyParser from "body-parser"
 import dotenv from "dotenv"
 import { PrismaClient } from "@prisma/client"
 import multer from "multer"
-import Papa from "papaparse"
-import { Readable } from "stream"
+import SDGService from "./services/SDGService"
 
 dotenv.config()
 
@@ -47,22 +46,14 @@ app.post(
 
     try {
       const fileBuffer = req.file.buffer
-      const records: any[] = []
-
       const csvString = fileBuffer.toString("utf-8")
 
-      Papa.parse(csvString, {
-        header: true,
-        skipEmptyLines: true,
-        complete: (results: Papa.ParseResult<any>) => {
-          records.push(...results.data)
-        },
-      })
+      console.log(csvString)
+
+      const result = SDGService.parseCSVString(csvString)
 
       res.json({
         message: "File processed successfully",
-        recordCount: records.length,
-        data: records,
       })
     } catch (error) {
       console.error("Error processing CSV:", error)
