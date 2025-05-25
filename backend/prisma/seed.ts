@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 // Population script for some of the categories that might contribute to revenue,
-// Indexes are somewhat arbitrary guesses. 0 being "strongly misaligned", 4 being "strongly aligned"
+// Indexes are somewhat arbitrary. 0 being "strongly misaligned", 4 being "strongly aligned"
 
 async function main() {
   // Food data

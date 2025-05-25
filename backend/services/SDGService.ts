@@ -52,6 +52,8 @@ class SDGService {
       skipEmptyLines: true,
     })
 
+    // TODO: Add validation.
+
     const companyGroupedResult = parseResult.data.reduce(
       (acc: ParsedCSV, curr: any): ParsedCSV => {
         if (!acc[curr["Company name"]]) {
@@ -177,10 +179,13 @@ class SDGService {
     return recordsWithIndexes
   }
   /**
-   * Some simple calculation logic. Most likely unrealistic.
+   * Some simple calculation logic. Most likely too simple for real-world use.
+   *
    * Performance: I think given this calculation in particular,
    * Use of something relatively simple as MapReduce would be a good fit.
    * But that is concern perhaps only if calculation is much bigger and there are more rows to be processed.
+   *
+   * Additionally, would be nice to use message-architecture, where message's content is per-company.
    * */
   async calculateSDGScore(
     records: ParsedCSV<CompanyRevenueWithIndexes>
@@ -263,12 +268,10 @@ class SDGService {
       | "infrastructureImpactIndex"
     >[]
   ): Promise<void> {
-    console.log(results)
     await this.prisma.company.createMany({
       data: results,
       skipDuplicates: true,
     })
-    console.log("Results stored")
   }
 }
 

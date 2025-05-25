@@ -33,10 +33,8 @@ const ImportDataView = () => {
       const formData = new FormData()
       formData.append("file", file)
 
-      const response = await api.uploadCompaniesData(formData)
-      console.log("Upload successful:", response.data)
+      await api.uploadCompaniesData(formData)
       setFile(null)
-      // Reset the file input
       const fileInput = document.querySelector(
         'input[type="file"]'
       ) as HTMLInputElement
