@@ -48,12 +48,11 @@ app.post(
       const fileBuffer = req.file.buffer
       const csvString = fileBuffer.toString("utf-8")
 
-      console.log(csvString)
-
-      const result = SDGService.parseCSVString(csvString)
+      const result = await SDGService.getResultsBasedOnCSVString(csvString)
 
       res.json({
         message: "File processed successfully",
+        results: result,
       })
     } catch (error) {
       console.error("Error processing CSV:", error)
