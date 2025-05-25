@@ -30,7 +30,9 @@ npm run dev
 
 And backend of the app should be running locally.
 
-Then from the frontend directory simply run:
+---
+
+Then in another console, from the frontend directory simply run:
 
 ```
 npm install
@@ -42,7 +44,7 @@ You should be able to access app at `localhost:5137`
 
 ## Test data
 
-In the root directory you should locate file `mock-data.csv` that can be used for testing purposes.
+In the root directory you should locate file `mock-data.csv` that can be used for testing purposes. **Note**: code lacks error handling now, so if some other data format is used app might easily crash :)
 
 There have been some assumptions made about the data, mainly that it has been processed with a separate script and field `closest relative` has been added with the help of that script.
 
