@@ -1,0 +1,10 @@
+Company name,Product,Closest relative,Share
+Mike's Fruit Farm,Apple,Fruit,0.8
+Mike's Fruit Farm,Pear,Fruit,0.2
+Espoo butchery,Beef,Meat,0.3
+Espoo butchery,Chicken,Meat,0.2
+Espoo butchery,Turkey,Meat,0.4
+Espoo butchery,Pork,Meat,0.1
+Amazon,AWS,Cloud provider,0.3
+Amazon,Shopping platform,Software,0.5
+Amazon,Data center,Hardware,0.2
