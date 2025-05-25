@@ -47,7 +47,7 @@ const RevenueView = () => {
               display: "flex",
               gap: "8px",
               textAlign: "start",
-              width: "350px",
+              width: "450px",
               border: "1px solid white",
               padding: "8px",
               borderRadius: "5px",
@@ -56,14 +56,21 @@ const RevenueView = () => {
           >
             <h3>{category.name}</h3>
             <div>
-              <div>Climate Impact Index: {category.climateImpactIndex}</div>
               <div>
-                Marine Life Impact Index: {category.marineLifeImpactIndex}
+                Climate Impact Index:{" "}
+                {category.climateImpactIndex || "Not defined"}
               </div>
-              <div>Economic Growth Index: {category.economicGrowthIndex}</div>
+              <div>
+                Marine Life Impact Index:{" "}
+                {category.marineLifeImpactIndex || "Not defined"}
+              </div>
+              <div>
+                Economic Growth Index:{" "}
+                {category.economicGrowthIndex || "Not defined"}
+              </div>
               <div>
                 Infrastructure Impact Index:{" "}
-                {category.infrastructureImpactIndex}
+                {category.infrastructureImpactIndex || "Not defined"}
               </div>
             </div>
           </div>
