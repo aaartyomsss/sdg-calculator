@@ -8,7 +8,7 @@ If you are a mac or linux user and have `nvm` then simply run `nvm use` from the
 
 ## Setup
 
-From the root project, start by building DB image:
+From the root of the project, start by building DB image:
 
 ```
 docker-compose up
@@ -45,3 +45,5 @@ You should be able to access app at `localhost:5137`
 In the root directory you should locate file `mock-data.csv` that can be used for testing purposes.
 
 There have been some assumptions made about the data, mainly that it has been processed with a separate script and field `closest relative` has been added with the help of that script.
+
+And then there is a DB seeding script that populates local DB with services/ products that have known estimates of the impacts towards (some) SDGs.
