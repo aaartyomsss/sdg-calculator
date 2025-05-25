@@ -31,7 +31,16 @@ app.get("/api/revenue-categories", async (req, res) => {
 })
 
 app.get("/api/companies", async (req, res) => {
-  const companies = await prisma.company.findMany()
+  const companies = await prisma.company.findMany({
+    select: {
+      id: true,
+      name: true,
+      climateImpactIndex: true,
+      marineLifeImpactIndex: true,
+      economicGrowthIndex: true,
+      infrastructureImpactIndex: true,
+    },
+  })
   res.json(companies)
 })
 

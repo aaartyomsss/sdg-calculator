@@ -2,7 +2,7 @@ import { useState } from "react"
 import "./App.css"
 import RevenueView from "./views/RevenueIndexesView"
 import ImportDataView from "./views/ImportDataView"
-
+import CompaniesView from "./views/CompaniesView"
 enum ActiveView {
   Revenue = "revenue",
   Companies = "companies",
@@ -28,6 +28,7 @@ function App() {
       <main style={{ height: "100vh" }}>
         {activeView === ActiveView.Revenue && <RevenueView />}
         {activeView === ActiveView.ImportData && <ImportDataView />}
+        {activeView === ActiveView.Companies && <CompaniesView />}
       </main>
     </>
   )

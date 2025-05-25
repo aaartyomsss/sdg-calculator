@@ -1,10 +1,13 @@
 import { useState } from "react"
 import api from "../api"
 
+type UploadStatus = "success" | "error" | null
+
 const ImportDataView = () => {
   const [file, setFile] = useState<File | null>(null)
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [status, setStatus] = useState<UploadStatus>(null)
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0]
@@ -38,9 +41,11 @@ const ImportDataView = () => {
         'input[type="file"]'
       ) as HTMLInputElement
       if (fileInput) fileInput.value = ""
+      setStatus("success")
     } catch (err) {
       setError("Failed to upload file. Please try again.")
       console.error("Upload error:", err)
+      setStatus("error")
     } finally {
       setUploading(false)
     }
@@ -53,6 +58,21 @@ const ImportDataView = () => {
         This view should be used for data import. Data is expected to be in a
         structured way, already parsed by a parsing script.
       </p>
+      <p>
+        Required fields:
+        <ul>
+          <li>Company name (string)</li>
+          <li>Product (string)</li>
+          <li>Closest relative (string)</li>
+          <li>Share (float from 0 to 1)</li>
+        </ul>
+      </p>
+      {status === "success" && (
+        <p style={{ color: "green" }}>
+          Upload successful - navigate to companies tab to see results
+        </p>
+      )}
+      {status === "error" && <p style={{ color: "red" }}>Upload failed</p>}
       <div
         style={{
           display: "flex",

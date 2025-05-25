@@ -100,6 +100,11 @@ class SDGService {
       })
 
     if (closestRelativeRevenueCategory) {
+      await this.addMissingRevenueCategories(
+        category,
+        closestRelativeRevenueCategory.id
+      )
+
       return {
         name: closestRelativeRevenueCategory.name,
         climateImpactIndex: closestRelativeRevenueCategory.climateImpactIndex,
@@ -228,7 +233,10 @@ class SDGService {
     return scores
   }
 
-  async addMissingRevenueCategories(category: string) {
+  async addMissingRevenueCategories(
+    category: string,
+    closestRelativeId?: string
+  ) {
     await this.prisma.revenueCategory.create({
       data: {
         name: category,
@@ -236,6 +244,7 @@ class SDGService {
         marineLifeImpactIndex: null,
         economicGrowthIndex: null,
         infrastructureImpactIndex: null,
+        parentCategoryId: closestRelativeId,
       },
     })
   }
