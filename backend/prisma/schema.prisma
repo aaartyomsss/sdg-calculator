@@ -15,7 +15,7 @@ datasource db {
 
 model RevenueCategory {
   id        String   @id @default(uuid())
-  name      String
+  name      String   @unique
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
@@ -37,7 +37,7 @@ model RevenueCategory {
 
 model Company {
   id String @id @default(uuid())
-  name String
+  name String @unique
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 

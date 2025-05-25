@@ -120,6 +120,10 @@ class SDGService {
       await this.prisma.revenueCategory.aggregate({
         where: {
           parentCategoryId: null,
+          climateImpactIndex: { not: null },
+          marineLifeImpactIndex: { not: null },
+          economicGrowthIndex: { not: null },
+          infrastructureImpactIndex: { not: null },
         },
         _avg: {
           climateImpactIndex: true,
