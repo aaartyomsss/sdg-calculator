@@ -12,7 +12,7 @@ describe("SDGService", () => {
     const rows = [
       ["Farm", "Apple", "Fruit", "0.6"],
       ["Farm", "Banana", "Fruit", "0.4"],
-      ["Cloud tech", "Cloud", "Software", "0.3"],
+      ["Cloud tech", "Cloud provider", "Software", "0.3"],
       ["Cloud tech", "AI", "Software", "0.7"],
     ]
 
@@ -28,7 +28,11 @@ describe("SDGService", () => {
         { Product: "banana", "Closest relative": "fruit", Share: 0.4 },
       ],
       "Cloud tech": [
-        { Product: "cloud", "Closest relative": "software", Share: 0.3 },
+        {
+          Product: "cloud-provider",
+          "Closest relative": "software",
+          Share: 0.3,
+        },
         { Product: "ai", "Closest relative": "software", Share: 0.7 },
       ],
     })

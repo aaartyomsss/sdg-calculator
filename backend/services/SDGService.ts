@@ -1,6 +1,7 @@
 import { Company, PrismaClient } from "@prisma/client"
 import Papa from "papaparse"
 import { RevenueCategory as NativeRevenueCategory } from "@prisma/client"
+import { slugify } from "../helpers/string"
 
 type RevenueCategory = Pick<
   NativeRevenueCategory,
@@ -60,8 +61,8 @@ class SDGService {
         const { "Company name": companyName, ...rest } = curr
         acc[companyName].push({
           ...rest,
-          Product: rest["Product"].toLowerCase(),
-          "Closest relative": rest["Closest relative"].toLowerCase(),
+          Product: slugify(rest["Product"]),
+          "Closest relative": slugify(rest["Closest relative"]),
           Share: parseFloat(rest["Share"]),
         })
         return acc
